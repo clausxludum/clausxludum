@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Mapa witryny (Zmien link ponizej na swoj wlasny, gdy juz wrzucisz strone na serwer)
+Sitemap: https://clausxludum.github.io/clausxludum/
