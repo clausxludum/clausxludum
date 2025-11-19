@@ -285,10 +285,36 @@ footer {
     border-top: 1px solid #111;
 }
 
-/* --- RESPONSYWNOŚĆ (Mobile) --- */
+/* --- RESPONSYWNOŚĆ I MEDIA QUERIES --- */
 @media (max-width: 768px) {
-    .hero-content h1 { font-size: 2.5rem; }
-    nav { flex-direction: column; gap: 15px; padding: 20px; }
-    .about-container { grid-template-columns: 1fr; }
-    .visual-box { height: 350px; transform: rotate(0deg); }
+    .hero-content h1 { 
+        font-size: 2.2rem; /* Trochę mniejsze, żeby nie łamało się brzydko */
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    nav { 
+        flex-direction: column; 
+        gap: 15px; 
+        padding: 20px; 
+        background: rgba(15, 15, 15, 0.95); /* Mniej przezroczyste na mobile dla czytelności */
+    }
+    
+    .about-container { 
+        grid-template-columns: 1fr; 
+        gap: 40px;
+    }
+    
+    .visual-box { 
+        height: 350px; 
+        transform: rotate(0deg); 
+        /* Na mobile wyłączamy grayscale, żeby od razu było ładnie widać */
+        filter: grayscale(0%) contrast(100%);
+    }
+
+    section {
+        padding: 60px 20px; /* Mniejsze odstępy na telefonie */
+    }
 }
