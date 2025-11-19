@@ -290,143 +290,101 @@ footer {
    RESPONSYWNOŚĆ (MOBILE & TABLET)
    Wklej to na samym końcu pliku style.css
    ========================================= */
+/* =========================================
+   POPRAWIONA RESPONSYWNOŚĆ (MOBILE)
+   Wklej to na samym końcu pliku style.css
+   (Zastąp poprzednią sekcję @media)
+   ========================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) { /* Zwiększyłem zasięg, żeby łapało też tablety */
     
-    /* --- NAWIGACJA --- */
+    /* --- NAPRAWA NAWIGACJI (MENU) --- */
     nav {
-        flex-direction: column;
-        padding: 15px;
-        background: #0f0f0f; /* Pełne czarne tło na mobile, czytelniejsze */
-        height: auto;
+        flex-direction: column; /* Układamy elementy jeden pod drugim */
+        padding: 15px 10px;     /* Mniejszy odstęp od krawędzi */
+        height: auto;           /* Wysokość dopasowana do zawartości */
+        background: #0f0f0f;    /* Pełne czarne tło, żeby było czytelnie */
+        position: relative;     /* Zmieniamy ze sticky na relative na chwilę, żeby nie zasłaniało */
     }
 
     .logo {
-        margin-bottom: 15px;
-        font-size: 1.3rem;
+        margin-bottom: 20px;    /* Odstęp imienia od linków */
+        font-size: 1.4rem;      /* Troszkę mniejsza czcionka imienia */
+        text-align: center;     /* Wyśrodkowanie imienia */
+        width: 100%;
+        word-wrap: break-word;  /* Zabezpieczenie przed ucięciem */
     }
 
     .nav-links {
-        gap: 0; /* Usuwamy odstępy poziome */
-        width: 100%;
-        flex-direction: column; /* Układamy linki pionowo */
-        text-align: center;
+        flex-direction: column; /* Linki PIONOWO */
+        gap: 0;                 /* Usuwamy odstępy między elementami flex */
+        width: 100%;            /* Szerokość na cały ekran */
+        padding: 0;
+        margin: 0;
     }
 
     .nav-links li {
         width: 100%;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        text-align: center;     /* Tekst na środku */
+        border-top: 1px solid rgba(255,255,255,0.05); /* Delikatna linia oddzielająca */
     }
 
     .nav-links a {
-        display: block;
-        padding: 15px 0; /* Duże pole do kliknięcia palcem */
+        display: block;         /* Link zajmuje całą szerokość */
+        padding: 15px 0;        /* Duże pole do kliknięcia */
         font-size: 1rem;
+        white-space: nowrap;    /* ZABRANIA łamania tekstu (naprawia "O MNIE") */
     }
 
-    /* --- HERO (NAGŁÓWEK) --- */
+    /* --- NAPRAWA HEADER (ZDJĘCIE W TLE) --- */
     header {
-        height: auto;      /* Nie wymuszamy pełnej wysokości ekranu */
-        min-height: 85vh;  /* Ale wciąż ma być wysokie */
-        padding: 100px 20px 50px; /* Więcej miejsca od góry, żeby tekst nie wchodził pod menu */
-        
-        /* WAŻNE: Wyłączamy Parallax na telefonach (powoduje błędy na iPhone) */
-        background-attachment: scroll; 
-        background-position: center;
+        min-height: auto;       /* Nie wymuszamy 100% wysokości ekranu */
+        padding-top: 40px;
+        padding-bottom: 60px;
+        background-attachment: scroll !important; /* Naprawa trzęsienia na iPhone */
+        background-position: center center;
     }
 
     .hero-content h1 {
-        font-size: 2rem; /* Zmniejszamy gigantyczny tekst */
+        font-size: 2rem;        /* Mniejszy nagłówek */
+        margin-top: 0;
     }
-
-    .hero-content p {
-        font-size: 1rem;
-        padding: 0 10px;
-    }
-
-    /* --- SEKCJE OGÓLNE --- */
+    
+    /* --- RESZTA ELEMENTÓW --- */
     section {
-        padding: 50px 15px; /* Mniejsze marginesy boczne */
+        padding: 40px 15px;     /* Mniejsze marginesy boczne */
+        overflow: hidden;       /* Zabezpieczenie przed przesuwaniem na boki */
     }
 
-    section h2 {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-
-    /* --- USŁUGI (KARTY) --- */
-    .services-grid {
-        grid-template-columns: 1fr; /* Jedna kolumna - karty jedna pod drugą */
-        gap: 20px;
-    }
-    
-    .service-card {
-        padding: 30px 20px; /* Trochę mniej "powietrza" w środku */
-    }
-
-    /* --- PORTFOLIO --- */
-    .portfolio-grid {
-        grid-template-columns: 1fr; /* Filmy jeden pod drugim */
-        gap: 30px;
-    }
-
-    /* --- O MNIE --- */
-    .about-container {
-        grid-template-columns: 1fr; /* Tekst nad zdjęciem */
-        gap: 40px;
-    }
-
-    .about-text {
-        order: 2; /* Tekst pod zdjęciem (opcjonalnie) - tu zostawiam tekst na górze (domyślnie) */
-        text-align: center; /* Centrujemy tekst na mobile */
-    }
-    
-    .skills {
-        justify-content: center; /* Centrujemy umiejętności */
-    }
-
-    .about-visual {
-        height: 300px; /* Mniejsza wysokość zdjęcia */
-        margin-bottom: 20px;
-    }
-    
-    .visual-box {
-        transform: rotate(0deg); /* Prostujemy zdjęcie, żeby nie wystawało */
-        /* Na mobile od razu pokazujemy kolor, bo nie ma "myszki" do najeżdżania */
-        filter: grayscale(0%) contrast(100%); 
-    }
-
-    /* --- PROCES --- */
+    .portfolio-grid, 
+    .services-grid, 
+    .about-container, 
     .process-steps {
-        flex-direction: column; /* Kroki jeden pod drugim */
-        gap: 40px;
+        grid-template-columns: 1fr !important; /* Wszystko w jednej kolumnie */
+        display: grid;
     }
     
-    .step-number {
-        font-size: 4rem;
-        top: -25px;
+    /* Naprawa zdjęcia w sekcji O MNIE */
+    .about-visual {
+        height: 300px;
+        width: 100%;
+        margin-top: 30px;
     }
 
-    /* --- KONTAKT --- */
+    .visual-box {
+        transform: none !important; /* Wyłączamy obrót na telefonie */
+        filter: grayscale(0%) !important; /* Od razu kolorowe */
+    }
+
+    /* Naprawa przycisków */
     .btn {
-        width: 100%; /* Przyciski na całą szerokość ekranu są łatwiejsze do kliknięcia */
+        width: 100%;            /* Przycisk na całą szerokość */
         display: block;
-        text-align: center;
+        box-sizing: border-box; /* Żeby padding nie poszerzał przycisku */
     }
     
     .btn-outline {
-        width: auto; /* Maila zostawiamy normalnie */
-        display: inline-block;
-        font-size: 0.9rem; /* Mniejsza czcionka maila, żeby się zmieścił */
-        padding: 12px 20px;
+        width: auto;            /* Mail zostawiamy normalnie */
+        font-size: 0.85rem;     /* Mniejsza czcionka w mailu */
     }
-}
-
-/* =========================================
-   BARDZO MAŁE EKRANY (np. stare iPhone SE)
-   ========================================= */
-@media (max-width: 380px) {
-    .hero-content h1 { font-size: 1.7rem; }
-    .logo { font-size: 1.2rem; }
-    .nav-links a { font-size: 0.9rem; }
 }
