@@ -1,4 +1,4 @@
-
+/* --- RESET I PODSTAWY --- */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
-
+/* --- NAWIGACJA (Glassmorphism) --- */
 nav {
     display: flex;
     justify-content: space-between;
@@ -56,6 +56,7 @@ nav {
     color: #3498db;
 }
 
+/* --- SEKCJNA HERO (Parallax) --- */
 header {
     height: 100vh;
     display: flex;
@@ -65,7 +66,7 @@ header {
     background: linear-gradient(rgba(0,0,0,0.6), #0f0f0f), url('https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; 
+    background-attachment: fixed; /* To tworzy efekt Parallax */
     padding: 20px;
 }
 
@@ -81,7 +82,7 @@ header {
     margin-bottom: 40px;
 }
 
-
+/* --- PRZYCISKI --- */
 .btn {
     padding: 15px 40px;
     background: linear-gradient(45deg, #3498db, #2980b9);
@@ -112,7 +113,7 @@ header {
     color: white;
 }
 
-
+/* --- SEKCJE OGÓLNE --- */
 section {
     padding: 100px 20px;
     max-width: 1200px;
@@ -126,7 +127,7 @@ section h2 {
     font-weight: 900;
 }
 
-
+/* --- OFERTA (Services) --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -157,7 +158,7 @@ section h2 {
 .service-card h3 { margin-bottom: 15px; }
 .service-card p { color: #aaa; font-size: 0.9rem; }
 
-
+/* --- PORTFOLIO --- */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -173,11 +174,26 @@ section h2 {
 
 .video-card:hover { transform: translateY(-5px); }
 
+/* Standardowy kontener (Poziomy 16:9) */
 .video-container {
     position: relative;
-    padding-bottom: 56.25%;
+    padding-bottom: 56.25%; /* Proporcje 16:9 */
     height: 0;
     background: #000;
+}
+
+/* NOWOŚĆ: Kontener dla Shorts/TikTok (Pionowy 9:16) */
+.video-container.vertical {
+    padding-bottom: 177.77%; /* Proporcje 9:16 */
+}
+
+/* Stylizacja iframe */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .video-container iframe {
@@ -192,7 +208,7 @@ section h2 {
 .card-info h3 { margin-bottom: 5px; }
 .card-info p { color: #aaa; font-size: 0.9rem; }
 
-
+/* --- O MNIE (Twoje zdjęcie i opis) --- */
 .about-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -210,13 +226,13 @@ section h2 {
 .visual-box {
     width: 100%;
     height: 100%;
-
+    /* TU WSTAWIASZ SWOJE ZDJĘCIE */
     background: url('profilowe.jpg'); 
     background-size: cover;
-    background-position: center top; 
+    background-position: center top; /* Żeby nie ucięło głowy */
     border-radius: 20px;
     
-
+    /* EFEKT CZARNO-BIAŁY */
     filter: grayscale(100%) contrast(110%);
     transform: rotate(3deg);
     transition: all 0.5s ease;
@@ -225,7 +241,7 @@ section h2 {
 
 .about-container:hover .visual-box {
     transform: rotate(0deg) scale(1.02);
-    filter: grayscale(0%) contrast(100%); 
+    filter: grayscale(0%) contrast(100%); /* KOLOR PO NAJECHANIU */
     box-shadow: 0 15px 40px rgba(52, 152, 219, 0.2);
 }
 
@@ -241,7 +257,7 @@ section h2 {
     border: 1px solid rgba(52, 152, 219, 0.3);
 }
 
-
+/* --- PROCES (Kroki) --- */
 .process-steps {
     display: flex;
     justify-content: space-around;
@@ -260,7 +276,7 @@ section h2 {
 .step-number {
     font-size: 5rem;
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.03); 
+    color: rgba(255, 255, 255, 0.03); /* Ledwo widoczny numer */
     position: absolute;
     top: -30px;
     left: 50%;
@@ -268,6 +284,7 @@ section h2 {
     z-index: -1;
 }
 
+/* --- KONTAKT i STOPKA --- */
 #contact { text-align: center; padding-bottom: 150px; }
 
 .socials { margin-top: 30px; }
@@ -350,12 +367,12 @@ footer {
         overflow: hidden;       /* Zabezpieczenie przed przesuwaniem na boki */
     }
 
-    .portfolio-grid, 
-    .services-grid, 
-    .about-container, 
-    .process-steps {
-        grid-template-columns: 1fr !important; /* Wszystko w jednej kolumnie */
+    .portfolio-grid {
         display: grid;
+        /* To sprawi, że pionowe filmy nie będą zajmować całego ekranu na komputerze */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+        gap: 40px;
+        align-items: start; /* Ważne: wyrównanie do góry */
     }
     
     /* Naprawa zdjęcia w sekcji O MNIE */
@@ -477,4 +494,3 @@ footer {
         transform: none !important;
     }
 }
-
